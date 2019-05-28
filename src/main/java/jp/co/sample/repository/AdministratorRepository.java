@@ -10,6 +10,10 @@ import org.springframework.stereotype.Repository;
 
 import jp.co.sample.domain.Administrator;
 
+/**
+ * @author knmrmst
+ *Administratorのリポジトリ
+ */
 @Repository
 public class AdministratorRepository {
 	@Autowired
@@ -34,20 +38,20 @@ public class AdministratorRepository {
 	public void insert(Administrator administrator) {
 		System.out.println("AdministratorRepositoryのinsert()が呼び出されました。");
 		SqlParameterSource param = new BeanPropertySqlParameterSource(administrator);
-		String insertSql = "INSERT INTO administrator(name,mail_address,password)VALUES(:name,:mailAddress,password)";
+		String insertSql = "INSERT INTO administrators(name,mail_address,password)VALUES(:name,:mailAddress,password)";
 		template.update(insertSql, param);
-
 	}
 
 	/**
 	 * @param mailAddress
 	 * @param password
 	 * @return Administratorオブジェクト
-	 * administratorテーブルのデータで、mailAddressとpasswordが一致するものがあればそのデータをオブジェクトにして返す
-	 * 一致するものがなければNULLを返す
+	 * administratorテーブルのデータで、mailAddressとpasswordが一致するものがあればそのデータをオブジェクトにして返す。
+	 * 一致するものがなければNULLを返す。
 	 */
 	public Administrator findByMailAddressAndPassword(String mailAddress, String password) {
-		String findByMailAddressAndPasswordSql = "SELECT id,name,mail_address,password FROM administrator "
+		System.out.println("AdministratorRepositoryのfindByMailAddressAndPassword()が呼び出されました");
+		String findByMailAddressAndPasswordSql = "SELECT id,name,mail_address,password FROM administrators "
 				+ "WHERE mail_address=:mailAddress AND password=:password";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("mailAddress", mailAddress).addValue("password",password);
 		Administrator administrator = template.queryForObject(findByMailAddressAndPasswordSql, param, ADMINISTRATOR_ROW_MAPPER);
@@ -56,4 +60,6 @@ public class AdministratorRepository {
 		}
 		return administrator;
 	}
+	
+	
 }
