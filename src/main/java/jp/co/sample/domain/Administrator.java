@@ -1,7 +1,8 @@
 package jp.co.sample.domain;
 
 /**
- * 管理者を表すドメイン
+ * 管理者を表すドメイン.
+ * 
  * @author knmrmst
  *
  */

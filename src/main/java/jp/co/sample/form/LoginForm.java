@@ -1,45 +1,36 @@
 package jp.co.sample.form;
 
+
 /**
- * 管理者を登録するフォーム.
- * 
  * @author knmrmst
+ *　ログイン機能のフォーム.
  */
-public class InsertAdministratorForm {
-	/** 名前*/
-	private String name;
-	/** メールアドレス*/
+public class LoginForm {
+
+	/** メールアドレス */
 	private String mailAddress;
-	/** パスワード*/
+	/** パスワード */
 	private String password;
-	
-	
-	
+
 	@Override
 	public String toString() {
-		return "InsertAdministratorForm [name=" + name + ", mailAddress=" + mailAddress + ", password=" + password
-				+ "]";
+		return "LoginForm [mailAddress=" + mailAddress + ", password=" + password + "]";
 	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
+
 	public String getMailAddress() {
 		return mailAddress;
 	}
+
 	public void setMailAddress(String mailAddress) {
 		this.mailAddress = mailAddress;
 	}
+
 	public String getPassword() {
 		return password;
 	}
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	
-
 
 }

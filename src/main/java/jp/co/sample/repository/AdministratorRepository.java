@@ -1,6 +1,7 @@
 package jp.co.sample.repository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -11,8 +12,9 @@ import org.springframework.stereotype.Repository;
 import jp.co.sample.domain.Administrator;
 
 /**
- * @author knmrmst
  *Administratorのリポジトリ.
+ *
+ * @author knmrmst
  */
 @Repository
 public class AdministratorRepository {
@@ -32,39 +34,45 @@ public class AdministratorRepository {
 	};
 
 	/**
-	 * @param administrator
-	 *  administratorsテーブルにデータをインサートする機能.
+	 * 管理者情報を登録する.
 	 *  <p>
 	 * 	引数で受け取ったAdministratorがIDを持っていなければstudentデータベースのadministratorテーブルに挿入する
 	 *  IDを持っていればadministratorテーブルのIDが一致するデータをアップデートする。
 	 *  </p>
+	 * 
+	 * @param administrator 管理者情報
 	 */
 	public void insert(Administrator administrator) {
 		System.out.println("AdministratorRepositoryのinsert()が呼び出されました。");
 		SqlParameterSource param = new BeanPropertySqlParameterSource(administrator);
-		String insertSql = "INSERT INTO administrators(name,mail_address,password)VALUES(:name,:mailAddress,password)";
+		String insertSql = "INSERT INTO administrators(name,mail_address,password)VALUES(:name,:mailAddress,:password)";
 		template.update(insertSql, param);
 	}
 
 	/**
-	 * administratorsテーブルのメールアドレスとパスワードが一致していればそのデータを返す検索機能.
-	 * @param mailAddress
-	 * @param password
-	 * @return Administratorオブジェクト
+	 *　メールアドレスとパスワードで管理者情報を探す機能.
+	 * 
 	 * <p>administratorテーブルのデータで、mailAddressとpasswordが一致するものがあればそのデータをオブジェクトにして返す。
 	 * 一致するものがなければNULLを返す。
 	 * </p>
+	 * 
+	 * @param mailAddress　メールアドレス
+	 * @param password　パスワード
+	 * @return administrator 管理者情報
 	 */
 	public Administrator findByMailAddressAndPassword(String mailAddress, String password) {
 		System.out.println("AdministratorRepositoryのfindByMailAddressAndPassword()が呼び出されました");
 		String findByMailAddressAndPasswordSql = "SELECT id,name,mail_address,password FROM administrators "
 				+ "WHERE mail_address=:mailAddress AND password=:password";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("mailAddress", mailAddress).addValue("password",password);
-		Administrator administrator = template.queryForObject(findByMailAddressAndPasswordSql, param, ADMINISTRATOR_ROW_MAPPER);
-		if(administrator == null) {
+		Administrator administrator;
+		try {
+			administrator = template.queryForObject(findByMailAddressAndPasswordSql, param, ADMINISTRATOR_ROW_MAPPER);
+			return administrator;
+		} catch (DataAccessException e) {
+			e.printStackTrace();
 			return null;
 		}
-		return administrator;
 	}
 
 

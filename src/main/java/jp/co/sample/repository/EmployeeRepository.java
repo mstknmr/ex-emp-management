@@ -13,8 +13,9 @@ import org.springframework.stereotype.Repository;
 import jp.co.sample.domain.Employee;
 
 /**
- * @author knmrmst
  *Employeeのリポジトリ.
+ *
+ * @author knmrmst
  */
 @Repository
 public class EmployeeRepository {
@@ -39,11 +40,12 @@ public class EmployeeRepository {
 	private NamedParameterJdbcTemplate template;
 	
 	/**
-	 * @return List<employee> employeeList
 	 * employeesテーブルの要素を全件検索する機能.
 	 * <p>
 	 * employeesテーブルの要素を全件検索してEmployee型のリストに格納して返す。
 	 * </p>
+	 * 
+	 * @return List<employee> employeeList　従業員のリスト
 	 */
 	public List<Employee> findAll(){
 		System.out.println("EmployeeRepositoryのfindAll()が呼び出されました");
@@ -56,7 +58,7 @@ public class EmployeeRepository {
 	
 	public Employee load(Integer id) {
 		System.out.println("EmployeeRepositoryのload()が呼び出されました");
-		String loadSql="ELECT id,name,image,gender,hire_date,mail_address,zip_code,address,telephone,salary,characteristics,dependents_count "
+		String loadSql="SELECT id,name,image,gender,hire_date,mail_address,zip_code,address,telephone,salary,characteristics,dependents_count "
 				+ "FROM employees WHERE id=:id";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
 		Employee employee = template.queryForObject(loadSql, param, EMPLOYEE_ROW_MAPPER);
@@ -65,11 +67,12 @@ public class EmployeeRepository {
 	
 	/**
 	 * employeesテーブルの更新機能.
-	 * @param employee
 	 * <p>
 	 * employeesテーブルのデータで、引数で受け取ったemployeeオブジェクトのidが一致するデータの
 	 * dependents_codeをemployeeオブジェクトの持っているdependentsCodeに変更する
 	 * </p>
+	 * 
+	 * @param employee　従業員情報
 	 */
 	public void update(Employee employee) {
 		System.out.println("EmployeeRepositoryのupdate()が呼び出されました");
