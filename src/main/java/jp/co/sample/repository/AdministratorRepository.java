@@ -70,7 +70,7 @@ public class AdministratorRepository {
 			administrator = template.queryForObject(findByMailAddressAndPasswordSql, param, ADMINISTRATOR_ROW_MAPPER);
 			return administrator;
 		} catch (DataAccessException e) {
-			e.printStackTrace();
+			System.out.println("パスワードとメールアドレスに不正があります");
 			return null;
 		}
 	}

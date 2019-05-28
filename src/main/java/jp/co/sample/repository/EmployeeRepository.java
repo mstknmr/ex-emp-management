@@ -49,8 +49,8 @@ public class EmployeeRepository {
 	 */
 	public List<Employee> findAll(){
 		System.out.println("EmployeeRepositoryのfindAll()が呼び出されました");
-		String findAllSql="SELECT id,name,image,gender,hire_date,mail_address,zip_code,address,telephone,salary,characteristics,dependents_count "
-				+ "FROM employees　ORDER BY hire_date DESC";
+		String findAllSql="SELECT id,name,image,gender,hire_date,mail_address,zip_code,address,telephone,salary,characteristics,dependents_count \n" + 
+				"FROM employees ORDER BY hire_date";
 		List<Employee> employeeList = template.query(findAllSql,EMPLOYEE_ROW_MAPPER);
 		
 		return employeeList;
