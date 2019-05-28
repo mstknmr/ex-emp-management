@@ -78,10 +78,10 @@ public class AdministratorController {
 	@RequestMapping("/login")
 	public String login(LoginForm form,Model model) {
 		Administrator administrator = administratorService.login(form.getMailAddress(), form.getPassword());
-		String errMessage =null;
+//		String errMessage =null;
 		if(administrator == null) {
-			errMessage="メールアドレスかパスワードが不正です";
-			model.addAttribute("err_message",errMessage);
+//			errMessage="メールアドレスかパスワードが不正です";
+			model.addAttribute("err_message","メールアドレスかパスワードが不正です");
 			return "administrator/login";
 		}else {
 			session.setAttribute("administratorName", administrator.getName());

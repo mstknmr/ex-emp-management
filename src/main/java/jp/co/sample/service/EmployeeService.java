@@ -32,4 +32,17 @@ public class EmployeeService {
 	public List<Employee> showList(){
 		return employeeRepository.findAll();
 	}
+	
+	/**
+	 * IDが一致する従業員情報の検索.
+	 * <p>
+	 * employeeRepositoryのload()を呼ぶ
+	 * findAll()からの戻り値を呼び出し元に返す。
+	 * </p>
+	 * @param id　従業員ID
+	 * @return　　従業員情報
+	 */
+	private Employee showDetail(Integer id) {
+		return employeeRepository.load(id);
+	}
 }
