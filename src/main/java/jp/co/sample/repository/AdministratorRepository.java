@@ -12,7 +12,7 @@ import jp.co.sample.domain.Administrator;
 
 /**
  * @author knmrmst
- *Administratorのリポジトリ
+ *Administratorのリポジトリ.
  */
 @Repository
 public class AdministratorRepository {
@@ -20,7 +20,7 @@ public class AdministratorRepository {
 	private NamedParameterJdbcTemplate template;
 
 	/**
-	 * Administratorオブジェクトを生成するROW_MAPPER
+	 * Administratorオブジェクトを生成するROW_MAPPER.
 	 */
 	private final static RowMapper<Administrator> ADMINISTRATOR_ROW_MAPPER = (rs, i) -> {
 		Administrator administrator = new Administrator();
@@ -32,8 +32,12 @@ public class AdministratorRepository {
 	};
 
 	/**
-	 * @param administrator 引数で受け取ったAdministratorがIDを持っていなければstudentデータベースのadministratorテーブルに挿入する
-	 *                      IDを持っていればadministratorテーブルのIDが一致するデータをアップデートする。
+	 * @param administrator
+	 *  administratorsテーブルにデータをインサートする機能.
+	 *  <p>
+	 * 	引数で受け取ったAdministratorがIDを持っていなければstudentデータベースのadministratorテーブルに挿入する
+	 *  IDを持っていればadministratorテーブルのIDが一致するデータをアップデートする。
+	 *  </p>
 	 */
 	public void insert(Administrator administrator) {
 		System.out.println("AdministratorRepositoryのinsert()が呼び出されました。");
@@ -43,11 +47,13 @@ public class AdministratorRepository {
 	}
 
 	/**
+	 * administratorsテーブルのメールアドレスとパスワードが一致していればそのデータを返す検索機能.
 	 * @param mailAddress
 	 * @param password
 	 * @return Administratorオブジェクト
-	 * administratorテーブルのデータで、mailAddressとpasswordが一致するものがあればそのデータをオブジェクトにして返す。
+	 * <p>administratorテーブルのデータで、mailAddressとpasswordが一致するものがあればそのデータをオブジェクトにして返す。
 	 * 一致するものがなければNULLを返す。
+	 * </p>
 	 */
 	public Administrator findByMailAddressAndPassword(String mailAddress, String password) {
 		System.out.println("AdministratorRepositoryのfindByMailAddressAndPassword()が呼び出されました");
@@ -60,6 +66,6 @@ public class AdministratorRepository {
 		}
 		return administrator;
 	}
-	
-	
+
+
 }

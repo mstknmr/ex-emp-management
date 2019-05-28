@@ -14,7 +14,7 @@ import jp.co.sample.domain.Employee;
 
 /**
  * @author knmrmst
- *Employeeのリポジトリ
+ *Employeeのリポジトリ.
  */
 @Repository
 public class EmployeeRepository {
@@ -40,7 +40,10 @@ public class EmployeeRepository {
 	
 	/**
 	 * @return List<employee> employeeList
-	 * employeesテーブルの要素を全件検索する機能
+	 * employeesテーブルの要素を全件検索する機能.
+	 * <p>
+	 * employeesテーブルの要素を全件検索してEmployee型のリストに格納して返す。
+	 * </p>
 	 */
 	public List<Employee> findAll(){
 		System.out.println("EmployeeRepositoryのfindAll()が呼び出されました");
@@ -61,10 +64,12 @@ public class EmployeeRepository {
 	}
 	
 	/**
+	 * employeesテーブルの更新機能.
 	 * @param employee
+	 * <p>
 	 * employeesテーブルのデータで、引数で受け取ったemployeeオブジェクトのidが一致するデータの
 	 * dependents_codeをemployeeオブジェクトの持っているdependentsCodeに変更する
-	 * 
+	 * </p>
 	 */
 	public void update(Employee employee) {
 		System.out.println("EmployeeRepositoryのupdate()が呼び出されました");
