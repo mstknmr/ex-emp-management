@@ -5,9 +5,11 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import jp.co.sample.domain.Employee;
+import jp.co.sample.form.UpdateEmployeeForm;
 import jp.co.sample.service.EmployeeService;
 
 
@@ -23,6 +25,11 @@ public class EmployeeController {
 	@Autowired
 	EmployeeService employeeService;
 	
+	@ModelAttribute
+	private UpdateEmployeeForm setUpUpdateEmployeeForm() {
+		return new UpdateEmployeeForm();
+	}
+	
 	/**
 	 * 従業員一覧を出力する.
 	 * 
@@ -35,6 +42,12 @@ public class EmployeeController {
 		System.out.println(employeeList);
 		model.addAttribute("employeeList", employeeList);
 		return "employee/list";
-		
+	}
+	
+	@RequestMapping("/showDetail")
+	public String showDetail(String id,Model model) {
+		Employee employee=employeeService.showDetail(Integer.parseInt(id));
+		model.addAttribute("employee", employee);
+		return "employee/detail";
 	}
 }
