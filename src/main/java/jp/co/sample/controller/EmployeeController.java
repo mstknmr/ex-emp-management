@@ -2,6 +2,7 @@ package jp.co.sample.controller;
 
 import java.util.ArrayList;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -67,14 +68,29 @@ public class EmployeeController {
 	 */
 	@RequestMapping("/update")
 	public String update(UpdateEmployeeForm form ) {
-		
+		System.out.println("form検証"+form);
 		Employee employee = employeeService.showDetail(Integer.parseInt(form.getId()));
-//		BeanUtils.copyProperties(form, employee); sourceとtargetでプロパティの型が違うので使えない
+		BeanUtils.copyProperties(form, employee);
+		employee.setSalary(Integer.parseInt(form.getSalary()));
 		employee.setDependentsCount(Integer.parseInt(form.getDependentsCount()));
-		System.out.println(employee);
+		System.out.println("employee検証"+employee);
 		employeeService.update(employee);
 		return "redirect:/employee/showList";
 	}
+	
+	@RequestMapping("/toUpdate")
+	public String toUpdate(UpdateEmployeeForm form,Model model) {
+		System.out.println(form);
+		Employee employee = employeeService.showDetail(Integer.parseInt(form.getId()));
+		BeanUtils.copyProperties(employee, form);
+		form.setSalary(employee.getSalary().toString());
+		form.setDependentsCount(employee.getDependentsCount().toString());
+		form.setHireDate(employee.getHireDate().toString());
+		System.out.println(form);
+		model.addAttribute("employee", form);
+		return "employee/update-employee.html";
+	}
+	
 	
 	
 }
