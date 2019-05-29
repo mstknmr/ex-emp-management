@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import jp.co.sample.domain.Administrator;
 import jp.co.sample.form.InsertAdministratorForm;
 import jp.co.sample.form.LoginForm;
-import jp.co.sample.form.UpdateEmployeeForm;
 import jp.co.sample.service.AdministratorService;
 
 
@@ -93,8 +92,15 @@ public class AdministratorController {
 		
 	}
 	
+	/**
+	 * ログアウト処理の実装.
+	 * 
+	 * @param form　フォーム
+	 * @param model　モデル
+	 * @return　ログイン画面
+	 */
 	@RequestMapping("/logout")
-	public String logout(UpdateEmployeeForm form ,Model model) {
+	public String logout() {
 		session.invalidate();
 		return "redirect:/";
 	}

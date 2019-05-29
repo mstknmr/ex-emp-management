@@ -2,7 +2,6 @@ package jp.co.sample.controller;
 
 import java.util.ArrayList;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -67,7 +66,7 @@ public class EmployeeController {
 	 * @return　従業員一覧画面
 	 */
 	@RequestMapping("/update")
-	public String update(UpdateEmployeeForm form ,Model model) {
+	public String update(UpdateEmployeeForm form ) {
 		
 		Employee employee = new Employee();
 //		BeanUtils.copyProperties(form, employee); sourceとtargetでプロパティの型が違うので使えない

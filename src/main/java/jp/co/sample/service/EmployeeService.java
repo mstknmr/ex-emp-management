@@ -23,10 +23,6 @@ public class EmployeeService {
 	/**
 	 * 従業員全員のリスト取得.
 	 * 
-	 * <p>
-	 * employeeRepositoryのfindAll()を実行してその戻り値を返す。
-	 * </p>
-	 * 
 	 * @return List<Employee> 従業員リスト
 	 */
 	public List<Employee> showList(){
@@ -35,10 +31,7 @@ public class EmployeeService {
 	
 	/**
 	 * IDが一致する従業員情報の検索.
-	 * <p>
-	 * employeeRepositoryのload()を呼ぶ
-	 * findAll()からの戻り値を呼び出し元に返す。
-	 * </p>
+	 * 
 	 * @param id　従業員ID
 	 * @return　　従業員情報
 	 */
@@ -48,9 +41,6 @@ public class EmployeeService {
 	
 	/**
 	 * 従業員情報を更新する.
-	 * <p>
-	 * employeeRepositoryのupdate()を呼ぶ
-	 * </p>
 	 * 
 	 * @param employee 従業員情報
 	 */
