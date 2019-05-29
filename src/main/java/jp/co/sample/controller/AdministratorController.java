@@ -87,6 +87,8 @@ public class AdministratorController {
 			return "administrator/login";
 		}else {
 			session.setAttribute("administratorName", administrator.getName());
+			session.setAttribute("administratorId", administrator.getId());
+			System.out.println(administrator.getId());
 			return "forward:/employee/showList";
 		}
 		
@@ -102,6 +104,27 @@ public class AdministratorController {
 	@RequestMapping("/logout")
 	public String logout() {
 		session.invalidate();
+		return "redirect:/";
+	}
+	
+	@RequestMapping("/toUpdateAdministraotr")
+	public String toUpdateAdministrator(Integer id,Model model ,InsertAdministratorForm form) {
+		System.out.println("toUpdateAdmin");
+		System.out.println(id);
+		Administrator administrator =administratorService.load(id);
+		System.out.println(administrator);
+		BeanUtils.copyProperties(administrator, form);
+		System.out.println(form);
+		return "administrator/update-administrator";
+	}
+	
+	@RequestMapping("/updateAdministrator")
+	public String updateAdministrator(Integer id ,InsertAdministratorForm form) {
+		Administrator administrator = administratorService.load(id);
+		System.out.println("form:"+form);
+		BeanUtils.copyProperties(form, administrator);
+		System.out.println("admin :"+administrator);
+		administratorService.insert(administrator);
 		return "redirect:/";
 	}
 	

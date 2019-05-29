@@ -56,7 +56,7 @@
 									</th>
 									<td>
 										<img src="../../static/img/e2.png" th:src="'/img/'+${employee.image}">
-										<input type="hidden" name="image" th:value="${employee.image}" th:field="*{image}">
+										<input type="hidden" name="image" th:value="${image}" th:field="*{image}">
 									</td>
 								</tr>
 								<tr>
@@ -65,7 +65,7 @@
 									</th>
 									<td>
 										<span th:text="${employee.gender}">女性</span>
-										<input type="hidden" name="gender" th:value="${employee.gender}" th:field="*{gender}">
+										<input type="hidden" name="gender" th:value="${gender}" th:field="*{gender}">
 									</td>
 								</tr>
 								<tr>
@@ -74,7 +74,7 @@
 									</th>
 									<td>
 										<span th:text="${employee.hireDate}">2012/11/29</span>
-										<input type="hidden" name="hireDate" th:value="${employee.hireDate}" th:field="*{hireDate}">
+										<input type="hidden" name="hireDate" th:value="${hireDate}" th:field="*{hireDate}">
 
 									</td>
 								</tr>
@@ -87,7 +87,7 @@
 											メールアドレスを入力してください
 										</label>
 										<label class="control-label" style="color: red" for="mailAddress"></label>
-										<input type="text" name="mailAddress" id="mailAddress" class="form-control" value="3" th:value="${employee.mailAddress}" th:field="*{mailAddress}">
+										<input type="text" name="mailAddress" id="mailAddress" class="form-control" value="3" th:value="${mailAddress}" th:field="*{mailAddress}">
 									</td>
 								</tr>
 								<tr>
@@ -98,7 +98,7 @@
 										<label class="control-label" style="color: red" for="zipCode">
 											郵便番号を入力してください
 										</label>
-										<input type="text" name="zipCode" id="zipCode" class="form-control" value="3" th:value="${employee.zipCode}" th:field="*{zipCode}">
+										<input type="text" name="zipCode" id="zipCode" class="form-control" value="3" th:value="${zipCode}" th:field="*{zipCode}">
 
 									</td>
 								</tr>
@@ -110,7 +110,7 @@
 										<label class="control-label" style="color: red" for="address">
 											住所を入力してください
 										</label>
-										<input type="text" name="address" id="address" class="form-control" value="3" th:value="${employee.address}" th:field="*{address}">
+										<input type="text" name="address" id="address" class="form-control" value="3" th:value="${address}" th:field="*{address}">
 									</td>
 								</tr>
 								<tr>
@@ -121,7 +121,7 @@
 										<label class="control-label" style="color: red" for="telephone">
 											電話番号を入力してください
 										</label>
-										<input type="text" name="telephone" id="telephone" class="form-control" value="3" th:value="${employee.telephone}" th:field="*{telephone}">
+										<input type="text" name="telephone" id="telephone" class="form-control" value="3" th:value="${telephone}" th:field="*{telephone}">
 									</td>
 								</tr>
 								<tr>
@@ -132,7 +132,7 @@
 										<label class="control-label" style="color: red" for="salary">
 											給料を入力してください
 										</label>
-										<input type="text" name="salary" id="salary" class="form-control" value="3" th:value="${employee.salary}" th:field="*{salary}" >
+										<input type="text" name="salary" id="salary" class="form-control" value="3" th:value="${salary}" th:field="*{salary}" >
 									</td>
 								</tr>
 								<tr>
@@ -156,7 +156,7 @@
 										</label>
 										<label class="control-label" style="color: red" for="dependentsCount"></label>
 										<input type="hidden" name="id" th:value="${employee.id}">
-										<input type="text" name="dependentsCount" id="dependentsCount" class="form-control" value="3" th:value="${employee.dependentsCount}" th:field="*{dependentsCount}">
+										<input type="text" name="dependentsCount" id="dependentsCount" class="form-control" value="3" th:value="${dependentsCount}" th:field="*{dependentsCount}">
 									</td>
 								</tr>
 							</table>

@@ -45,8 +45,15 @@ public class AdministratorRepository {
 	public void insert(Administrator administrator) {
 		System.out.println("AdministratorRepositoryのinsert()が呼び出されました。");
 		SqlParameterSource param = new BeanPropertySqlParameterSource(administrator);
-		String insertSql = "INSERT INTO administrators(name,mail_address,password)VALUES(:name,:mailAddress,:password)";
-		template.update(insertSql, param);
+		
+		if(administrator.getId()==null) {
+			String insertSql = "INSERT INTO administrators(name,mail_address,password)VALUES(:name,:mailAddress,:password)";
+			template.update(insertSql, param);
+		}else {
+			String updateSql="UPDATE administrators SET name=:name,mail_address=:mailAddress,password=:password WHERE id=:id";
+			template.update(updateSql, param);
+		}
+		
 	}
 
 	/**
@@ -73,6 +80,19 @@ public class AdministratorRepository {
 			System.out.println("パスワードとメールアドレスに不正があります");
 			return null;
 		}
+	}
+	
+	public Administrator load(Integer id) {
+		String loadSql="SELECT id,name,mail_address,password FROM administrators WHERE id= :id";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
+		try {
+			Administrator administrator  = template.queryForObject(loadSql, param, ADMINISTRATOR_ROW_MAPPER);
+			return administrator;
+		} catch (DataAccessException e) {
+			System.out.println("入力されたIDを持つデータはありません");
+			return null;
+		}
+		
 	}
 
 

@@ -44,5 +44,15 @@ public class AdministratorService {
 	public Administrator login(String mailAddress,String password) {
 		return administratorRepository.findByMailAddressAndPassword(mailAddress, password);
 	}
+	
+	/**
+	 * 従業員情報の検索.
+	 * 
+	 * @param id 従業員ID
+	 * @return　従業員情報
+	 */
+	public Administrator load(Integer id) {
+		return administratorRepository.load(id);
+	}
 
 }

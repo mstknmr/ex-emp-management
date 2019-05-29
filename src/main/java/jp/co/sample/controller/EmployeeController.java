@@ -80,13 +80,11 @@ public class EmployeeController {
 	
 	@RequestMapping("/toUpdate")
 	public String toUpdate(UpdateEmployeeForm form,Model model) {
-		System.out.println(form);
 		Employee employee = employeeService.showDetail(Integer.parseInt(form.getId()));
 		BeanUtils.copyProperties(employee, form);
 		form.setSalary(employee.getSalary().toString());
 		form.setDependentsCount(employee.getDependentsCount().toString());
 		form.setHireDate(employee.getHireDate().toString());
-		System.out.println(form);
 		model.addAttribute("employee", form);
 		return "employee/update-employee.html";
 	}

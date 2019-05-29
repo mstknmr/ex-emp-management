@@ -28,6 +28,10 @@
           &nbsp;&nbsp;&nbsp;
           <a href="../administrator/login.html" class="navbar-link" th:href="@{/logout}">ログアウト</a>
         </p>
+        <form class="" action="index.html" th:action="@{/toUpdateAdministraotr}" method="post">
+            <input type="hidden" name="id" th:value="${session.administratorId}">
+            <button type="submit" class="btn btn-primary">管理者情報更新</button>
+         </form>
       </div>
       <!-- /.navbar-collapse -->
     </div>
