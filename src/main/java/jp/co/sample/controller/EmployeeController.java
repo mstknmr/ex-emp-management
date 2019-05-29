@@ -68,9 +68,8 @@ public class EmployeeController {
 	@RequestMapping("/update")
 	public String update(UpdateEmployeeForm form ) {
 		
-		Employee employee = new Employee();
+		Employee employee = employeeService.showDetail(Integer.parseInt(form.getId()));
 //		BeanUtils.copyProperties(form, employee); sourceとtargetでプロパティの型が違うので使えない
-		employee.setId(Integer.parseInt(form.getId()));
 		employee.setDependentsCount(Integer.parseInt(form.getDependentsCount()));
 		System.out.println(employee);
 		employeeService.update(employee);
