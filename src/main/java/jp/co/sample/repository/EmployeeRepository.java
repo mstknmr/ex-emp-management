@@ -76,8 +76,9 @@ public class EmployeeRepository {
 	 */
 	public void update(Employee employee) {
 		System.out.println("EmployeeRepositoryのupdate()が呼び出されました");
+		System.out.println(employee);
 		SqlParameterSource param = new BeanPropertySqlParameterSource(employee);
-		String updateSql = "UPDATE employees SET dependents_count=:dependentsCount FROM employees WHERE id=:id" ;
+		String updateSql = "UPDATE employees SET dependents_count=:dependentsCount WHERE id=:id" ;
 //		String updateSql= "UPDATE employees SET "
 //				+ "name=:name,"
 //				+ "image=:image,"

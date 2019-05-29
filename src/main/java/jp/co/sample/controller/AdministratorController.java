@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import jp.co.sample.domain.Administrator;
 import jp.co.sample.form.InsertAdministratorForm;
 import jp.co.sample.form.LoginForm;
+import jp.co.sample.form.UpdateEmployeeForm;
 import jp.co.sample.service.AdministratorService;
 
 
@@ -54,7 +55,9 @@ public class AdministratorController {
 	@RequestMapping("/insert")
 	public String insert(InsertAdministratorForm form) {
 		Administrator administrator = new Administrator();
+		System.out.println("form:"+form);
 		BeanUtils.copyProperties(form, administrator);
+		System.out.println("admin :"+administrator);
 		administratorService.insert(administrator);
 		return "redirect:/";
 	}
@@ -88,6 +91,12 @@ public class AdministratorController {
 			return "forward:/employee/showList";
 		}
 		
+	}
+	
+	@RequestMapping("/logout")
+	public String logout(UpdateEmployeeForm form ,Model model) {
+		session.invalidate();
+		return "redirect:/";
 	}
 	
 }
